@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Top 5 Movies </title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background-color: #136e80;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0 0 10px 0;
+      padding-top: 10px;
+      color: #a3e509;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .page-description {
+      max-width: 700px;
+      text-align: center;
+      font-size: 16px;
+      margin: 0 0 40px 0;
+      line-height: 1.5;
+      color: #d0e07fcc;
+      font-style: italic;
+    }
+
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .movie-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+      background-color: #222;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.05);
+    }
+
+    .movie-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .movie-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .card-content {
+      position: absolute;
+      bottom: -100%;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+      padding: 15px 20px 20px 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      transition: bottom 0.4s ease-in-out;
+      color: #eee;
+    }
+
+    .movie-card:hover .card-content {
+      bottom: 0;
+    }
+
+    .movie-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #a3e509;
+    }
+
+    .release-genre {
+      margin-bottom: 15px;
+      font-size: 14px;
+      line-height: 1.4;
+      color: #ccc;
+      text-align: center;
+    }
+
+    .release-genre ul {
+      list-style: disc inside;
+      padding-left: 0;
+      margin: 6px auto 0 auto;
+      max-width: 180px;
+      text-align: left;
+    }
+
+    .release-genre ul li {
+      margin: 3px 0;
+    }
+
+    .movie-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+      font-size: 14px;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 12px 15px;
+      border-radius: 8px;
+      color: #ddd;
+    }
+
+    .movie-info-grid div {
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+    }
+
+    .movie-info-grid strong {
+      margin-right: 6px;
+      font-weight: 600;
+      white-space: nowrap;
+      color: #a3e509;
+    }
+
+    .summary {
+      grid-column: span 2;
+      margin-top: 10px;
+      line-height: 1.4;
+      font-style: normal;
+    }
+
+    .pixel-box {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 15px;
+      height: 15px;
+      background-color: #a3e509;
+      border-radius: 3px;
+      box-shadow: 0 0 6px #a3e509;
+      z-index: 1000;
+    }
+    .card-content {
+  position: absolute;
+  bottom: -100%;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+  padding: 40px 20px 20px 20px; /* increased top padding to reserve space for sticky title */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transition: bottom 0.4s ease-in-out;
+  color: #eee;
+}
+
+.movie-title {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 10px 0;
+  z-index: 10;
+  border-bottom: 1px solid #a3e509;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 0 10px 0; /* changed margin-bottom to only bottom */
+  text-align: center;
+  color: #a3e509;
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>Top 5 Movies</h1>
+
+  <p class="page-description">
+    Explore our selection of top movies, each with release info, genre highlights, and detailed insights on cast, crew, and plot summaries.
+  </p>
+
+  <div class="movie-grid">
+
+    <div class="movie-card">
+      <img src="mal.jpeg" alt="Maleficent" />
+      <div class="card-content">
+        <div class="movie-title">Maleficent</div>
+        <div class="release-genre">
+          <div>Released: 2014</div>
+          <ul>
+            <li>Genre: Fantasy, Adventure</li>
+            <li>Dark fairy tale with a twist</li>
+          </ul>
+        </div>
+        <div class="movie-info-grid">
+          <div><strong>Movie:</strong> Maleficent</div>
+          <div><strong>Cast:</strong> Angelina Jolie, Elle Fanning</div>
+          <div><strong>Producer:</strong> Joe Roth</div>
+          <div><strong>Director:</strong> Robert Stromberg</div>
+          <div class="summary"><strong>Summary:</strong> Maleficent, a powerful fairy betrayed by someone she loved, becomes a fierce protector of her enchanted realm, balancing vengeance and compassion in her dark fairy tale journey.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="movie-card">
+      <img src="joker.jpeg" alt="Joker" />
+      <div class="card-content">
+        <div class="movie-title">Joker</div>
+        <div class="release-genre">
+          <div>Released: 2019</div>
+          <ul>
+            <li>Genre: Crime, Drama, Thriller</li>
+            <li>Psychological origin story</li>
+          </ul>
+        </div>
+        <div class="movie-info-grid">
+          <div><strong>Movie:</strong> Joker</div>
+          <div><strong>Cast:</strong> Joaquin Phoenix, Robert De Niro</div>
+          <div><strong>Producer:</strong> Todd Phillips</div>
+          <div><strong>Director:</strong> Todd Phillips</div>
+          <div class="summary"><strong>Summary:</strong> Arthur Fleck, a struggling comedian marginalized by society, descends into madness and chaos, ultimately transforming into the infamous Joker, a symbol of anarchy and rebellion.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="movie-card">
+      <img src="lala.jpeg" alt="La La Land" />
+      <div class="card-content">
+        <div class="movie-title">La La Land</div>
+        <div class="release-genre">
+          <div>Released: 2016</div>
+          <ul>
+            <li>Genre: Musical, Romance, Drama</li>
+            <li>Love and dreams in LA</li>
+          </ul>
+        </div>
+        <div class="movie-info-grid">
+          <div><strong>Movie:</strong> La La Land</div>
+          <div><strong>Cast:</strong> Ryan Gosling, Emma Stone</div>
+          <div><strong>Producer:</strong> Fred Berger</div>
+          <div><strong>Director:</strong> Damien Chazelle</div>
+          <div class="summary"><strong>Summary:</strong> Two ambitious artists, a jazz pianist and an aspiring actress, fall in love while struggling to balance their careers and dreams in the bright, challenging city of Los Angeles.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="movie-card">
+      <img src="insterstellar.jpeg" alt="Interstellar" />
+      <div class="card-content">
+        <div class="movie-title">Interstellar</div>
+        <div class="release-genre">
+          <div>Released: 2014</div>
+          <ul>
+            <li>Genre: Sci-Fi, Adventure, Drama</li>
+            <li>Space journey to save humanity</li>
+          </ul>
+        </div>
+        <div class="movie-info-grid">
+          <div><strong>Movie:</strong> Interstellar</div>
+          <div><strong>Cast:</strong> Matthew McConaughey, Anne Hathaway</div>
+          <div><strong>Producer:</strong> Emma Thomas</div>
+          <div><strong>Director:</strong> Christopher Nolan</div>
+          <div class="summary"><strong>Summary:</strong> A team of explorers travel through a wormhole in space to find a new habitable planet, fighting against time and love to secure humanity’s survival.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="movie-card">
+      <img src="the pursuit of happiness.jpeg" alt="The Pursuit of Happiness" />
+      <div class="card-content">
+        <div class="movie-title">The Pursuit of Happiness</div>
+        <div class="release-genre">
+          <div>Released: 2006</div>
+          <ul>
+            <li>Genre: Biography, Drama</li>
+            <li>Inspiring father-son story</li>
+          </ul>
+        </div>
+        <div class="movie-info-grid">
+          <div><strong>Movie:</strong> The Pursuit of Happiness</div>
+          <div><strong>Cast:</strong> Will Smith, Jaden Smith</div>
+          <div><strong>Producer:</strong> Todd Black</div>
+          <div><strong>Director:</strong> Gabriele Muccino</div>
+          <div class="summary"><strong>Summary:</strong> Based on a true story, a struggling salesman fights homelessness and hardship to create a better future for his son, showing relentless determination and love.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pixel-box"></div>
+
+</body>
+</html>
